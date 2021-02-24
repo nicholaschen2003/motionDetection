@@ -66,7 +66,7 @@ def frameDeltaMotionDetection(args, vs):
 
 def SIFTMotionDetection(args, vs):
 	sift = cv2.SIFT_create() #maybe play around with parameters to try and make better
-	bf = cv2.BFMatcher(cv2.NORM_L1, crossCheck=True)
+	bf = cv2.BFMatcher(cv2.NORM_L2, crossCheck=True)
 	previousFramesN = []
 	prevKPN = []
 	prevDesN = []
@@ -75,8 +75,8 @@ def SIFTMotionDetection(args, vs):
 	prevDesM = []
 	bufferN = 10 #number of frames a point must be new for it to be detected as motion
 	bufferM = 1 #number of frames a point must be moving for it to be detected as motion
-	vectorMarginOfError = 1 #num pixels the components of a movement vector must be greater than to be significant
-	percentDifferenceMarginOfError = 1 #value that the difference between x and y components of 2 vectors must less than to be significantly similar
+	vectorMarginOfError = 3 #num pixels the magnitude of a movement vector must be greater than to be significant
+	percentDifferenceMarginOfError = .5 #value that the difference between x and y components of 2 vectors must less than to be significantly similar
 	while True:
 		t1 = time.time()
 		frame = vs.read()
@@ -90,6 +90,7 @@ def SIFTMotionDetection(args, vs):
 			break
 
 		frame = imutils.resize(frame, width=500, height=500)
+		cleanFrame = frame.copy()
 		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 		gray = cv2.GaussianBlur(gray, (25, 25), 0)
 
@@ -139,11 +140,11 @@ def SIFTMotionDetection(args, vs):
 				for j in range(len(prevKPM[i])):
 					if j in matchesIdx:
 						mvtVector = ((prevKPM[i][j].pt[0] - prevKPM[i-1][matches[matchesIdx.index(j)].trainIdx].pt[0]), (prevKPM[i][j].pt[1] - prevKPM[i-1][matches[matchesIdx.index(j)].trainIdx].pt[1]))
-						# magnitude = math.sqrt((kp[j].pt[0] - prevKP[i][matches[matchesIdx.index(j)].trainIdx].pt[0]) ** 2) + ((kp[j].pt[1] - prevKP[i][matches[matchesIdx.index(j)].trainIdx].pt[1]) ** 2)
-						# unitMvtVector = ((kp[j].pt[0] - prevKP[i][matches[matchesIdx.index(j)].trainIdx].pt[0])/magnitude, (kp[j].pt[1] - prevKP[i][matches[matchesIdx.index(j)].trainIdx].pt[1])/magnitude)
+						magnitude = math.sqrt(mvtVector[0] ** 2 + mvtVector[1] ** 2)
+						# unitMvtVector = (mvtVector[0]/magnitude, mvtVector[1]/magnitude)
 
 						#make sure movement vector is nonzero
-						if abs(mvtVector[0]) > vectorMarginOfError and abs(mvtVector[1]) > vectorMarginOfError:
+						if magnitude > vectorMarginOfError:
 							#no movements have been recorded yet
 							if i == 1:
 								oldPoints.append([prevKPM[i][j], mvtVector, 1])
@@ -190,12 +191,25 @@ def SIFTMotionDetection(args, vs):
 
 			if similarClusters != []:
 				for cluster in similarClusters:
-					(x, y, w, h) = cv2.boundingRect(np.array([point.pt for point in cluster], dtype=np.int32))
+					x, y, w, h = cv2.boundingRect(np.array([point.pt for point in cluster], dtype=np.int32))
 					cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
-					# if w > 1 and h > 1:
-					# 	box = frame[x:x+w, y:y+h]
-					# 	cv2.imshow("Motion", box)
-					# 	cv2.waitKey(0)
+					if w > frame.shape[1]*.02 and h > frame.shape[0]*.02:
+						x = int(x-frame.shape[1]*.05)
+						if x < 0:
+							x = 0
+						w = int(w+frame.shape[1]*.1)
+						if x+w > frame.shape[1]:
+							w = frame.shape[1]-x
+						y = int(y-frame.shape[0]*.05)
+						if y < 0:
+							y = 0
+						h = int(h+frame.shape[0]*.1)
+						if y+h > frame.shape[0]:
+							h = frame.shape[0]-y
+						if x+w <= frame.shape[1] and y+h <= frame.shape[0]:
+							box = cleanFrame[y:y+h, x:x+w]
+							cv2.imshow("Motion", box)
+							# cv2.waitKey(0)
 
 		if len(prevKPN) < bufferN and len(prevDesN) < bufferN:
 			prevKPN.append(kp)
