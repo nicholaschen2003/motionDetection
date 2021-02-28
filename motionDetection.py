@@ -9,6 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import RidgeClassifier
 from sklearn.preprocessing import PowerTransformer
 import math
+import tensorflow as tf
 
 def frameDeltaMotionDetection(args, vs):
 	previousFrame = None
@@ -75,8 +76,12 @@ def SIFTMotionDetection(args, vs):
 	prevDesM = []
 	bufferN = 10 #number of frames a point must be new for it to be detected as motion
 	bufferM = 1 #number of frames a point must be moving for it to be detected as motion
-	vectorMarginOfError = 3 #num pixels the magnitude of a movement vector must be greater than to be significant
+	vectorMarginOfError = 2 #num pixels the magnitude of a movement vector must be greater than to be significant
 	percentDifferenceMarginOfError = .5 #value that the difference between x and y components of 2 vectors must less than to be significantly similar
+	try:
+		net = tf.keras.models.load_model('net/final/')
+	except:
+		net = tf.keras.models.load_model('net/checkpoints/')
 	while True:
 		t1 = time.time()
 		frame = vs.read()
@@ -194,22 +199,37 @@ def SIFTMotionDetection(args, vs):
 					x, y, w, h = cv2.boundingRect(np.array([point.pt for point in cluster], dtype=np.int32))
 					cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 					if w > frame.shape[1]*.02 and h > frame.shape[0]*.02:
-						x = int(x-frame.shape[1]*.05)
+						x = int(x-frame.shape[1]*.1)
 						if x < 0:
 							x = 0
-						w = int(w+frame.shape[1]*.1)
+						w = int(w+frame.shape[1]*.2)
 						if x+w > frame.shape[1]:
 							w = frame.shape[1]-x
-						y = int(y-frame.shape[0]*.05)
+						y = int(y-frame.shape[0]*.1)
 						if y < 0:
 							y = 0
-						h = int(h+frame.shape[0]*.1)
+						h = int(h+frame.shape[0]*.2)
 						if y+h > frame.shape[0]:
 							h = frame.shape[0]-y
-						if x+w <= frame.shape[1] and y+h <= frame.shape[0]:
-							box = cleanFrame[y:y+h, x:x+w]
-							cv2.imshow("Motion", box)
-							# cv2.waitKey(0)
+						box = cleanFrame[y:y+h, x:x+w]
+						# print(box)
+						maxDim = max([h,w])
+						if y+maxDim <= h and x+maxDim <= w:
+							final = cleanFrame[y:y+maxDim, x:x+maxDim]
+							print(final.shape)
+						else:
+							zeros = np.zeros((maxDim,maxDim,3), dtype=np.uint8)
+							zeros[0:h, 0:w] = box
+							final = zeros
+						final = cv2.resize(final, (128,128)).reshape((1,128,128,3))
+						cv2.imshow("Motion", final[0])
+						result = net.predict(final)
+						print(result)
+						if result[0][0] > result[0][1]:
+							print("face")
+						else:
+							print("hand")
+						# cv2.waitKey(0)
 
 		if len(prevKPN) < bufferN and len(prevDesN) < bufferN:
 			prevKPN.append(kp)
@@ -312,9 +332,9 @@ def main():
 	#no video, using webcam instead
 	if args.get("video", None) is None:
 		vs = VideoStream(src=0).start()
-		frameDeltaMotionDetection(args, vs)
+		# frameDeltaMotionDetection(args, vs)
 		SIFTMotionDetection(args, vs)
-		backgroundRemovalMotionDetection(args,vs)
+		# backgroundRemovalMotionDetection(args,vs)
 		time.sleep(2.0)
 	else:
 		vs1 = cv2.VideoCapture(args["video"])
