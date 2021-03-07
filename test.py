@@ -25,13 +25,21 @@ hands = [cv2.imread('datasets/hands/'+file) for file in os.listdir('datasets/han
 random.shuffle(hands)
 test = faces+hands
 random.shuffle(test)
-net = tf.keras.models.load_model('net/checkpoints/')
+netC = tf.keras.models.load_model('net/checkpoints/')
+netF = tf.keras.models.load_model('net/final/')
 for pic in test:
-    result = net.predict(pic.reshape(1,128,128,3))
+    result = netC.predict(pic.reshape(1,128,128,3))
+    print("C", result)
     if result[0][0] > result[0][1]:
-        print("face")
+        print("C face")
     else:
-        print("hand")
+        print("C hand")
+    result = netF.predict(pic.reshape(1,128,128,3))
+    print("F", result)
+    if result[0][0] > result[0][1]:
+        print("F face")
+    else:
+        print("F hand")
     cv2.imshow("test", pic)
     cv2.waitKey(0)
 
