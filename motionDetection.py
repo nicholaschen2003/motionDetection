@@ -214,13 +214,17 @@ def SIFTMotionDetection(args, vs):
 						box = cleanFrame[y:y+h, x:x+w]
 						# print(box)
 						maxDim = max([h,w])
-						if y+maxDim <= h and x+maxDim <= w:
+						if y+maxDim <= frame.shape[0] and x+maxDim <= frame.shape[1]:
 							final = cleanFrame[y:y+maxDim, x:x+maxDim]
-							print(final.shape)
 						else:
-							zeros = np.zeros((maxDim,maxDim,3), dtype=np.uint8)
-							zeros[0:h, 0:w] = box
-							final = zeros
+							final = np.zeros((maxDim,maxDim,3), dtype=np.uint8)
+							if maxDim == h:
+								totalPadding = maxDim - w
+								final[0:h, int(totalPadding/2):int(totalPadding/2)+w] = box
+							else:
+								totalPadding = maxDim - h
+								final[int(totalPadding/2):int(totalPadding/2)+h, 0:w] = box
+
 						final = cv2.resize(final, (128,128)).reshape((1,128,128,3))
 						cv2.imshow("Motion", final[0])
 						result = net.predict(final)
