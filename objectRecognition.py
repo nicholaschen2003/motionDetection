@@ -35,11 +35,12 @@ class CustomCallback(tf.keras.callbacks.Callback):
 
 callback = tf.keras.callbacks.ModelCheckpoint(filepath="net/checkpoints/",
                                                 verbose=1,
+                                                save_best_only=True,
                                                 save_freq='epoch')
 
-TRAIN_EPOCHS = 20
-BATCH_SIZE_TRAIN = 64
-BATCH_SIZE_TEST = 64
+TRAIN_EPOCHS = 50
+BATCH_SIZE_TRAIN = 8
+BATCH_SIZE_TEST = 8
 
 class Net():
     def __init__(self, input_shape):
@@ -50,11 +51,12 @@ class Net():
         layers.experimental.preprocessing.RandomContrast(0.5),
         layers.experimental.preprocessing.RandomTranslation(height_factor=0.3, width_factor=0.3),
         layers.experimental.preprocessing.RandomZoom(height_factor=0.3),
-        layers.experimental.preprocessing.RandomCrop(128,128)
+        layers.experimental.preprocessing.RandomCrop(128,128),
         ])
         #128x128x3
         self.model.add(layers.Conv2D(8, 13, activation = 'relu'))
         self.model.add(layers.BatchNormalization())
+        self.model.add(layers.Dropout(0.2))
         #116x116x8
         self.model.add(layers.MaxPooling2D(pool_size = 2))
         #58x58x8
@@ -75,7 +77,7 @@ class Net():
 
     def print_summary(self, summaryStr):
         print(summaryStr)
-        print(summaryStr, file=open('log.txt', 'w'))
+        print(summaryStr, file=open('log.txt', 'a'))
 
 if __name__ == "__main__":
     faceDirs = os.listdir('datasets/faces/')
@@ -86,12 +88,12 @@ if __name__ == "__main__":
         if len(faces) > 11000:
             break
     random.shuffle(faces)
-    trainFX = faces[:8000]
-    testFX = faces[8000:11000]
+    trainFX = faces[:9000]
+    testFX = faces[9000:11000]
     hands = [cv2.imread('datasets/hands/'+file) for file in os.listdir('datasets/hands/')]
     random.shuffle(hands)
-    trainHX = hands[:8000]
-    testHX = hands[8000:11000]
+    trainHX = hands[:9000]
+    testHX = hands[9000:11000]
     for i in range(len(trainFX)):
         trainFX[i] = [trainFX[i], np.array([1,0])]
     for i in range(len(testFX)):
@@ -111,7 +113,9 @@ if __name__ == "__main__":
     print(len(trainX), trainX[0].shape, trainY, len(testX), testX[0].shape, testY)
     load = input("Enter path to model to be loaded, or hit enter for no model: ")
     if load == "":
-        net = Net((128, 128, 3)).model
+        net = Net((128, 128, 3))
+        print(net)
+        net = net.model
     else:
         net = tf.keras.models.load_model(load)
     results = net.fit(x=generator(BATCH_SIZE_TRAIN, [trainX,trainY]),
