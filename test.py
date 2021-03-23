@@ -1,15 +1,6 @@
-import time
 import tensorflow as tf
-import tensorflow_datasets as tfds
-import tensorflow.keras.models as models
-import tensorflow.keras.layers as layers
-import tensorflow.keras.optimizers as optimizers
-import tensorflow.keras.losses as losses
-import sklearn.preprocessing as preprocessing
-import matplotlib.pyplot as plt
 import numpy as np
 import cv2
-import sys
 import os
 import random
 
@@ -28,6 +19,7 @@ random.shuffle(test)
 netC = tf.keras.models.load_model('net/checkpoints/')
 netF = tf.keras.models.load_model('net/final/')
 for pic in test:
+    print()
     result = netC.predict(pic.reshape(1,128,128,3))
     print("C", result)
     if result[0][0] > result[0][1]:
@@ -35,7 +27,7 @@ for pic in test:
     else:
         print("C hand")
     result = netF.predict(pic.reshape(1,128,128,3))
-    print("F", result)
+    print("\nF", result)
     if result[0][0] > result[0][1]:
         print("F face")
     else:

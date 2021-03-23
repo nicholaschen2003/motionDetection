@@ -77,11 +77,11 @@ def SIFTMotionDetection(args, vs):
 	bufferN = 10 #number of frames a point must be new for it to be detected as motion
 	bufferM = 1 #number of frames a point must be moving for it to be detected as motion
 	vectorMarginOfError = 2 #num pixels the magnitude of a movement vector must be greater than to be significant
-	percentDifferenceMarginOfError = .5 #value that the difference between x and y components of 2 vectors must less than to be significantly similar
+	percentDifferenceMarginOfError = 1 #value that the difference between x and y components of 2 vectors must less than to be significantly similar
 	try:
-		net = tf.keras.models.load_model('net/final/')
+		net = tf.keras.models.load_model('net/4/final/')
 	except:
-		net = tf.keras.models.load_model('net/checkpoints/')
+		net = tf.keras.models.load_model('net/4/checkpoints/')
 	while True:
 		t1 = time.time()
 		frame = vs.read()
@@ -227,6 +227,7 @@ def SIFTMotionDetection(args, vs):
 
 						final = cv2.resize(final, (128,128)).reshape((1,128,128,3))
 						cv2.imshow("Motion", final[0])
+						# cv2.imwrite("motionFrame.png", final[0])
 						result = net.predict(final)
 						print(result)
 						if result[0][0] > result[0][1]:

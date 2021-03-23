@@ -8,9 +8,13 @@ import cv2
 netF = models.load_model('net/final/')
 netC = models.load_model('net/checkpoints/')
 
-img = np.random.rand(1, 128, 128, 3)
+while True:
+    img = np.random.random((128,128,3)).reshape(1,128,128,3)
 
-print("F", netF.predict(img))
-print("C", netC.predict(img))
-cv2.imshow("Image", img.reshape(128,128,3))
-cv2.waitKey(0)
+    # path = input("Path to image: ")
+    # img = cv2.resize(cv2.imread(path), (128,128)).reshape(1,128,128,3)
+    print("F", netF.predict(img))
+    print("C", netC.predict(img))
+    cv2.imshow("Image", img.reshape(128,128,3))
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()

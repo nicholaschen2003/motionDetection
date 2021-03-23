@@ -13,17 +13,17 @@ import sys
 import os
 import random
 
-def generator(batch_size, data_set_list):
-    index = 0
-    while True:
-        batchX, batchY = [], []
-        for i in range(batch_size):
-            if index >= len(data_set_list[0]):
-                index = 0
-            batchX.append(data_set_list[0][index].reshape((128,128,3)).astype('int32'))
-            batchY.append(data_set_list[1][index])
-            index += 1
-        yield np.array(batchX), np.array(batchY)
+# def generator(batch_size, data_set_list):
+#     index = 0
+#     while True:
+#         batchX, batchY = [], []
+#         for i in range(batch_size):
+#             if index >= len(data_set_list):
+#                 index = 0
+#             batchX.append(data_set_list[index][0].reshape((128,128,3)).astype('int32'))
+#             batchY.append(data_set_list[index][1])
+#             index += 1
+#         yield np.array(batchX), np.array(batchY)
 
 class CustomCallback(tf.keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs=None):
@@ -31,38 +31,39 @@ class CustomCallback(tf.keras.callbacks.Callback):
         s = f"Epoch {epoch+1}\n"
         for key in keys:
             s += f"{key}: {logs[key]:.4f} - "
-        print(s[:-3], file=open('log.txt', 'a'))
+        print(s[:-3], file=open('net/log.txt', 'a'))
 
-callback = tf.keras.callbacks.ModelCheckpoint(filepath="net/checkpoints/",
+callback = tf.keras.callbacks.ModelCheckpoint(filepath="net/5/checkpoints/",
                                                 verbose=1,
                                                 save_best_only=True,
                                                 save_freq='epoch')
 
-TRAIN_EPOCHS = 50
-BATCH_SIZE_TRAIN = 8
-BATCH_SIZE_TEST = 8
+TRAIN_EPOCHS = 10
+BATCH_SIZE_TRAIN = 16
+BATCH_SIZE_TEST = 16
 
 class Net():
     def __init__(self, input_shape):
         self.model = models.Sequential([
         layers.InputLayer(input_shape = input_shape),
-        layers.experimental.preprocessing.RandomFlip("horizontal_and_vertical"),
-        layers.experimental.preprocessing.RandomRotation(0.2),
-        layers.experimental.preprocessing.RandomContrast(0.5),
-        layers.experimental.preprocessing.RandomTranslation(height_factor=0.3, width_factor=0.3),
-        layers.experimental.preprocessing.RandomZoom(height_factor=0.3),
-        layers.experimental.preprocessing.RandomCrop(128,128),
-        ])
+        layers.experimental.preprocessing.Rescaling(1./255),
+        # layers.experimental.preprocessing.RandomFlip("horizontal_and_vertical"),
+        # layers.experimental.preprocessing.RandomRotation(0.5),
+        # layers.experimental.preprocessing.RandomContrast(0.5),
+        # layers.experimental.preprocessing.RandomTranslation(height_factor=0.3, width_factor=0.3),
+        # layers.experimental.preprocessing.RandomZoom(height_factor=0.3),
+        # layers.experimental.preprocessing.RandomCrop(128,128),
+        ]) #use preprocessing to make dataset larger
         #128x128x3
         self.model.add(layers.Conv2D(8, 13, activation = 'relu'))
         self.model.add(layers.BatchNormalization())
         self.model.add(layers.Dropout(0.2))
         #116x116x8
-        self.model.add(layers.MaxPooling2D(pool_size = 2))
+        self.model.add(layers.AveragePooling2D(pool_size = 2))
         #58x58x8
         self.model.add(layers.Conv2D(16, 11, activation = 'relu'))
         #48x48x16
-        self.model.add(layers.MaxPooling2D(pool_size = 2))
+        self.model.add(layers.AveragePooling2D(pool_size = 2))
         #24x24x16
         self.model.add(layers.Flatten())
         self.model.add(layers.Dense(128, activation = 'relu'))
@@ -77,40 +78,31 @@ class Net():
 
     def print_summary(self, summaryStr):
         print(summaryStr)
-        print(summaryStr, file=open('log.txt', 'a'))
+        print(summaryStr, file=open('net/log.txt', 'a'))
 
 if __name__ == "__main__":
-    faceDirs = os.listdir('datasets/faces/')
-    random.shuffle(faceDirs)
-    faces = []
-    for dir in faceDirs:
-        faces += [cv2.imread('datasets/faces/'+dir+'/'+file) for file in os.listdir('datasets/faces/'+dir)]
-        if len(faces) > 11000:
-            break
-    random.shuffle(faces)
-    trainFX = faces[:9000]
-    testFX = faces[9000:11000]
-    hands = [cv2.imread('datasets/hands/'+file) for file in os.listdir('datasets/hands/')]
-    random.shuffle(hands)
-    trainHX = hands[:9000]
-    testHX = hands[9000:11000]
-    for i in range(len(trainFX)):
-        trainFX[i] = [trainFX[i], np.array([1,0])]
-    for i in range(len(testFX)):
-        testFX[i] = [testFX[i], np.array([1,0])]
-    for i in range(len(trainHX)):
-        trainHX[i] = [trainHX[i], np.array([0,1])]
-    for i in range(len(testHX)):
-        testHX[i] = [testHX[i], np.array([0,1])]
-    train = trainFX+trainHX
-    random.shuffle(train)
-    test = testFX+testHX
-    random.shuffle(test)
-    trainX = np.array([item[0] for item in train])
-    trainY = np.array([item[1] for item in train])
-    testX = np.array([item[0] for item in test])
-    testY = np.array([item[1] for item in test])
-    print(len(trainX), trainX[0].shape, trainY, len(testX), testX[0].shape, testY)
+    random_flip = layers.experimental.preprocessing.RandomFlip("horizontal_and_vertical")
+    random_rotation = layers.experimental.preprocessing.RandomRotation(0.5)
+    random_contrast = layers.experimental.preprocessing.RandomContrast(0.5)
+    random_translation = layers.experimental.preprocessing.RandomTranslation(height_factor=0.3, width_factor=0.3)
+    random_zoom = layers.experimental.preprocessing.RandomZoom(height_factor=0.3)
+    random_crop = layers.experimental.preprocessing.RandomCrop(128,128)
+    train_ds0 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="training", image_size=(128,128), seed=123, batch_size=16)
+    train_ds1 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="training", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_flip(x),y))
+    train_ds2 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="training", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_rotation(x),y))
+    train_ds3 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="training", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_contrast(x),y))
+    train_ds4 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="training", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_translation(x),y))
+    train_ds5 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="training", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_zoom(x),y))
+    train_ds6 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="training", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_crop(x),y))
+    val_ds0 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="validation", image_size=(128,128), seed=123, batch_size=16)
+    val_ds1 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="validation", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_flip(x),y))
+    val_ds2 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="validation", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_rotation(x),y))
+    val_ds3 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="validation", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_contrast(x),y))
+    val_ds4 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="validation", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_translation(x),y))
+    val_ds5 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="validation", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_zoom(x),y))
+    val_ds6 = tf.keras.preprocessing.image_dataset_from_directory("datasets", label_mode="categorical", validation_split=(1./11), subset="validation", image_size=(128,128), seed=123, batch_size=16).map(lambda x,y: (random_crop(x),y))
+    train_ds = train_ds0.concatenate(train_ds1).concatenate(train_ds2).concatenate(train_ds3).concatenate(train_ds4).concatenate(train_ds5).concatenate(train_ds6).shuffle(1250)
+    val_ds = val_ds0.concatenate(val_ds1).concatenate(val_ds2).concatenate(val_ds3).concatenate(val_ds4).concatenate(val_ds5).concatenate(val_ds6)
     load = input("Enter path to model to be loaded, or hit enter for no model: ")
     if load == "":
         net = Net((128, 128, 3))
@@ -118,14 +110,10 @@ if __name__ == "__main__":
         net = net.model
     else:
         net = tf.keras.models.load_model(load)
-    results = net.fit(x=generator(BATCH_SIZE_TRAIN, [trainX,trainY]),
-                        validation_data=generator(BATCH_SIZE_TEST, [testX, testY]),
-                        shuffle = True,
+    results = net.fit(x=train_ds,
+                        validation_data=val_ds,
                         epochs = TRAIN_EPOCHS,
-                        batch_size = BATCH_SIZE_TRAIN,
-                        validation_batch_size = BATCH_SIZE_TEST,
                         verbose = 1,
-                        steps_per_epoch=len(trainX)/BATCH_SIZE_TRAIN,
-                        validation_steps=len(testX)/BATCH_SIZE_TEST,
+                        shuffle = True,
                         callbacks=[callback, CustomCallback()]) #saving and logging
-    tf.keras.models.save_model(net, "net/final/")
+    tf.keras.models.save_model(net, "net/5/final/")

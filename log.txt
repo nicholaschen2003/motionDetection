@@ -1,138 +1,1506 @@
 Model: "sequential"
 _________________________________________________________________
-Layer (type)                 Output Shape              Param #   
+Layer (type)                 Output Shape              Param #
 =================================================================
-random_flip (RandomFlip)     (None, 128, 128, 3)       0         
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
 _________________________________________________________________
-random_rotation (RandomRotat (None, 128, 128, 3)       0         
+random_rotation (RandomRotat (None, 128, 128, 3)       0
 _________________________________________________________________
-random_contrast (RandomContr (None, 128, 128, 3)       0         
+random_contrast (RandomContr (None, 128, 128, 3)       0
 _________________________________________________________________
-random_translation (RandomTr (None, 128, 128, 3)       0         
+random_translation (RandomTr (None, 128, 128, 3)       0
 _________________________________________________________________
-random_zoom (RandomZoom)     (None, 128, 128, 3)       0         
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
 _________________________________________________________________
-random_crop (RandomCrop)     (None, 128, 128, 3)       0         
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
 _________________________________________________________________
-conv2d (Conv2D)              (None, 116, 116, 8)       4064      
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
 _________________________________________________________________
-batch_normalization (BatchNo (None, 116, 116, 8)       32        
+batch_normalization (BatchNo (None, 116, 116, 8)       32
 _________________________________________________________________
-dropout (Dropout)            (None, 116, 116, 8)       0         
+dropout (Dropout)            (None, 116, 116, 8)       0
 _________________________________________________________________
-max_pooling2d (MaxPooling2D) (None, 58, 58, 8)         0         
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
 _________________________________________________________________
-conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504     
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
 _________________________________________________________________
-max_pooling2d_1 (MaxPooling2 (None, 24, 24, 16)        0         
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
 _________________________________________________________________
-flatten (Flatten)            (None, 9216)              0         
+flatten (Flatten)            (None, 9216)              0
 _________________________________________________________________
-dense (Dense)                (None, 128)               1179776   
+dense (Dense)                (None, 128)               1179776
 _________________________________________________________________
-dense_1 (Dense)              (None, 2)                 258       
+dense_1 (Dense)              (None, 2)                 258
 =================================================================
 Total params: 1,199,634
 Trainable params: 1,199,618
 Non-trainable params: 16
 _________________________________________________________________
 Epoch 1
-loss: 0.6083 - accuracy: 0.7117 - val_loss: 0.4528 - val_accuracy: 0.7620
+loss: 0.6556 - accuracy: 0.6337 - val_loss: 0.5652 - val_accuracy: 0.6957
 Epoch 2
-loss: 0.4460 - accuracy: 0.8052 - val_loss: 1.4559 - val_accuracy: 0.6010
+loss: 0.5276 - accuracy: 0.7529 - val_loss: 0.3715 - val_accuracy: 0.8223
 Epoch 3
-loss: 0.3352 - accuracy: 0.8594 - val_loss: 0.1977 - val_accuracy: 0.9162
+loss: 0.4529 - accuracy: 0.8039 - val_loss: 0.2804 - val_accuracy: 0.8855
 Epoch 4
-loss: 0.2909 - accuracy: 0.8841 - val_loss: 0.3089 - val_accuracy: 0.8960
+loss: 0.3218 - accuracy: 0.8645 - val_loss: 0.2577 - val_accuracy: 0.8795
 Epoch 5
-loss: 0.2609 - accuracy: 0.8978 - val_loss: 0.4355 - val_accuracy: 0.8602
+loss: 0.2587 - accuracy: 0.8953 - val_loss: 0.1851 - val_accuracy: 0.9280
 Epoch 6
-loss: 0.2468 - accuracy: 0.9028 - val_loss: 0.1487 - val_accuracy: 0.9377
+loss: 0.2330 - accuracy: 0.9088 - val_loss: 0.0791 - val_accuracy: 0.9725
 Epoch 7
-loss: 0.2292 - accuracy: 0.9112 - val_loss: 0.0628 - val_accuracy: 0.9797
+loss: 0.2042 - accuracy: 0.9211 - val_loss: 0.0839 - val_accuracy: 0.9705
 Epoch 8
-loss: 0.2122 - accuracy: 0.9183 - val_loss: 0.0651 - val_accuracy: 0.9745
+loss: 0.2081 - accuracy: 0.9221 - val_loss: 0.0568 - val_accuracy: 0.9795
 Epoch 9
-loss: 0.2095 - accuracy: 0.9200 - val_loss: 0.0869 - val_accuracy: 0.9665
+loss: 0.1907 - accuracy: 0.9275 - val_loss: 0.0830 - val_accuracy: 0.9772
 Epoch 10
-loss: 0.1916 - accuracy: 0.9272 - val_loss: 0.1584 - val_accuracy: 0.9433
+loss: 0.1848 - accuracy: 0.9314 - val_loss: 0.1702 - val_accuracy: 0.9358
 Epoch 11
-loss: 0.1831 - accuracy: 0.9311 - val_loss: 0.0777 - val_accuracy: 0.9718
+loss: 0.1689 - accuracy: 0.9373 - val_loss: 0.2352 - val_accuracy: 0.9120
 Epoch 12
-loss: 0.1747 - accuracy: 0.9339 - val_loss: 0.0962 - val_accuracy: 0.9668
+loss: 0.1727 - accuracy: 0.9373 - val_loss: 0.0416 - val_accuracy: 0.9855
 Epoch 13
-loss: 0.1630 - accuracy: 0.9434 - val_loss: 0.2726 - val_accuracy: 0.9170
+loss: 0.1681 - accuracy: 0.9375 - val_loss: 0.0398 - val_accuracy: 0.9855
 Epoch 14
-loss: 0.1632 - accuracy: 0.9409 - val_loss: 0.0934 - val_accuracy: 0.9678
+loss: 0.1682 - accuracy: 0.9392 - val_loss: 0.1476 - val_accuracy: 0.9473
 Epoch 15
-loss: 0.1533 - accuracy: 0.9442 - val_loss: 0.0770 - val_accuracy: 0.9732
+loss: 0.1647 - accuracy: 0.9419 - val_loss: 0.0721 - val_accuracy: 0.9772
 Epoch 16
-loss: 0.1409 - accuracy: 0.9486 - val_loss: 0.0276 - val_accuracy: 0.9937
+loss: 0.1465 - accuracy: 0.9433 - val_loss: 0.0554 - val_accuracy: 0.9827
 Epoch 17
-loss: 0.1444 - accuracy: 0.9476 - val_loss: 2.3743 - val_accuracy: 0.8015
+loss: 0.1452 - accuracy: 0.9448 - val_loss: 0.0882 - val_accuracy: 0.9693
 Epoch 18
-loss: 0.1370 - accuracy: 0.9488 - val_loss: 0.0260 - val_accuracy: 0.9895
+loss: 0.1455 - accuracy: 0.9480 - val_loss: 0.0232 - val_accuracy: 0.9912
 Epoch 19
-loss: 0.1269 - accuracy: 0.9516 - val_loss: 0.0180 - val_accuracy: 0.9923
+loss: 0.1502 - accuracy: 0.9463 - val_loss: 0.0433 - val_accuracy: 0.9845
 Epoch 20
-loss: 0.1292 - accuracy: 0.9564 - val_loss: 0.1099 - val_accuracy: 0.9688
+loss: 0.1403 - accuracy: 0.9498 - val_loss: 0.1813 - val_accuracy: 0.9380
 Epoch 21
-loss: 0.1254 - accuracy: 0.9556 - val_loss: 1.0336 - val_accuracy: 0.8788
+loss: 0.1344 - accuracy: 0.9534 - val_loss: 0.0329 - val_accuracy: 0.9895
 Epoch 22
-loss: 0.1187 - accuracy: 0.9561 - val_loss: 0.0176 - val_accuracy: 0.9937
+loss: 0.1376 - accuracy: 0.9517 - val_loss: 0.0424 - val_accuracy: 0.9880
 Epoch 23
-loss: 0.1226 - accuracy: 0.9546 - val_loss: 0.2897 - val_accuracy: 0.9323
+loss: 0.1571 - accuracy: 0.9427 - val_loss: 0.0992 - val_accuracy: 0.9740
 Epoch 24
-loss: 0.1168 - accuracy: 0.9589 - val_loss: 0.0798 - val_accuracy: 0.9787
+loss: 0.1302 - accuracy: 0.9549 - val_loss: 0.0399 - val_accuracy: 0.9860
 Epoch 25
-loss: 0.1141 - accuracy: 0.9590 - val_loss: 0.0475 - val_accuracy: 0.9883
+loss: 0.1243 - accuracy: 0.9556 - val_loss: 0.0230 - val_accuracy: 0.9935
 Epoch 26
-loss: 0.1172 - accuracy: 0.9584 - val_loss: 0.0367 - val_accuracy: 0.9910
+loss: 0.1262 - accuracy: 0.9562 - val_loss: 0.1251 - val_accuracy: 0.9528
 Epoch 27
-loss: 0.1084 - accuracy: 0.9628 - val_loss: 0.0281 - val_accuracy: 0.9910
+loss: 0.1196 - accuracy: 0.9568 - val_loss: 0.0625 - val_accuracy: 0.9755
 Epoch 28
-loss: 0.1172 - accuracy: 0.9596 - val_loss: 0.0068 - val_accuracy: 0.9977
+loss: 0.1212 - accuracy: 0.9559 - val_loss: 0.0505 - val_accuracy: 0.9808
 Epoch 29
-loss: 0.1137 - accuracy: 0.9596 - val_loss: 0.4668 - val_accuracy: 0.9270
+loss: 0.1221 - accuracy: 0.9596 - val_loss: 0.0363 - val_accuracy: 0.9898
 Epoch 30
-loss: 0.1153 - accuracy: 0.9601 - val_loss: 0.0230 - val_accuracy: 0.9923
+loss: 0.1223 - accuracy: 0.9549 - val_loss: 0.0766 - val_accuracy: 0.9737
 Epoch 31
-loss: 0.0959 - accuracy: 0.9666 - val_loss: 0.0235 - val_accuracy: 0.9950
+loss: 0.1306 - accuracy: 0.9552 - val_loss: 0.0352 - val_accuracy: 0.9883
 Epoch 32
-loss: 0.1010 - accuracy: 0.9646 - val_loss: 1.7766 - val_accuracy: 0.8165
+loss: 0.1151 - accuracy: 0.9606 - val_loss: 0.0211 - val_accuracy: 0.9955
 Epoch 33
-loss: 0.1011 - accuracy: 0.9651 - val_loss: 0.0479 - val_accuracy: 0.9843
+loss: 0.1117 - accuracy: 0.9609 - val_loss: 0.0279 - val_accuracy: 0.9918
 Epoch 34
-loss: 0.0985 - accuracy: 0.9657 - val_loss: 0.0292 - val_accuracy: 0.9920
+loss: 0.1162 - accuracy: 0.9579 - val_loss: 0.0314 - val_accuracy: 0.9908
 Epoch 35
-loss: 0.0962 - accuracy: 0.9672 - val_loss: 0.0848 - val_accuracy: 0.9865
+loss: 0.1180 - accuracy: 0.9583 - val_loss: 0.0362 - val_accuracy: 0.9860
 Epoch 36
-loss: 0.1074 - accuracy: 0.9628 - val_loss: 0.0147 - val_accuracy: 0.9945
+loss: 0.1234 - accuracy: 0.9588 - val_loss: 0.0335 - val_accuracy: 0.9900
 Epoch 37
-loss: 0.0886 - accuracy: 0.9702 - val_loss: 0.0127 - val_accuracy: 0.9952
+loss: 0.1065 - accuracy: 0.9611 - val_loss: 0.0154 - val_accuracy: 0.9950
 Epoch 38
-loss: 0.0947 - accuracy: 0.9671 - val_loss: 0.0122 - val_accuracy: 0.9958
+loss: 0.1127 - accuracy: 0.9605 - val_loss: 0.1016 - val_accuracy: 0.9703
 Epoch 39
-loss: 0.0918 - accuracy: 0.9691 - val_loss: 0.0138 - val_accuracy: 0.9973
+loss: 0.1055 - accuracy: 0.9598 - val_loss: 0.0335 - val_accuracy: 0.9880
 Epoch 40
-loss: 0.0992 - accuracy: 0.9663 - val_loss: 0.0751 - val_accuracy: 0.9803
+loss: 0.1113 - accuracy: 0.9611 - val_loss: 0.0239 - val_accuracy: 0.9920
 Epoch 41
-loss: 0.0910 - accuracy: 0.9690 - val_loss: 0.0212 - val_accuracy: 0.9975
+loss: 0.0999 - accuracy: 0.9649 - val_loss: 0.0394 - val_accuracy: 0.9877
 Epoch 42
-loss: 0.0929 - accuracy: 0.9682 - val_loss: 0.5542 - val_accuracy: 0.9020
+loss: 0.1194 - accuracy: 0.9571 - val_loss: 0.0847 - val_accuracy: 0.9743
 Epoch 43
-loss: 0.0864 - accuracy: 0.9706 - val_loss: 0.0146 - val_accuracy: 0.9940
+loss: 0.1067 - accuracy: 0.9621 - val_loss: 0.0196 - val_accuracy: 0.9933
 Epoch 44
-loss: 0.0886 - accuracy: 0.9699 - val_loss: 0.0220 - val_accuracy: 0.9942
+loss: 0.1090 - accuracy: 0.9621 - val_loss: 0.0223 - val_accuracy: 0.9927
 Epoch 45
-loss: 0.0915 - accuracy: 0.9668 - val_loss: 0.0974 - val_accuracy: 0.9803
+loss: 0.1083 - accuracy: 0.9621 - val_loss: 0.0236 - val_accuracy: 0.9918
 Epoch 46
-loss: 0.0912 - accuracy: 0.9692 - val_loss: 0.0971 - val_accuracy: 0.9808
+loss: 0.1167 - accuracy: 0.9603 - val_loss: 0.0140 - val_accuracy: 0.9952
 Epoch 47
-loss: 0.0975 - accuracy: 0.9661 - val_loss: 0.0315 - val_accuracy: 0.9920
+loss: 0.1005 - accuracy: 0.9638 - val_loss: 0.0181 - val_accuracy: 0.9937
 Epoch 48
-loss: 0.0912 - accuracy: 0.9691 - val_loss: 0.0776 - val_accuracy: 0.9840
+loss: 0.1040 - accuracy: 0.9637 - val_loss: 0.0320 - val_accuracy: 0.9910
 Epoch 49
-loss: 0.0879 - accuracy: 0.9717 - val_loss: 0.2295 - val_accuracy: 0.9747
+loss: 0.0977 - accuracy: 0.9668 - val_loss: 0.0196 - val_accuracy: 0.9948
 Epoch 50
-loss: 0.0943 - accuracy: 0.9685 - val_loss: 0.0949 - val_accuracy: 0.9787
+loss: 0.1004 - accuracy: 0.9648 - val_loss: 0.0288 - val_accuracy: 0.9915
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Epoch 1
+loss: 0.6677 - accuracy: 0.6322 - val_loss: 0.6621 - val_accuracy: 0.6015
+Epoch 2
+loss: 0.5189 - accuracy: 0.7524 - val_loss: 0.2392 - val_accuracy: 0.8985
+Epoch 3
+loss: 0.3602 - accuracy: 0.8488 - val_loss: 0.1843 - val_accuracy: 0.9245
+Epoch 4
+loss: 0.2848 - accuracy: 0.8852 - val_loss: 0.3722 - val_accuracy: 0.8625
+Epoch 5
+loss: 0.2570 - accuracy: 0.8972 - val_loss: 0.0759 - val_accuracy: 0.9793
+Epoch 6
+loss: 0.2260 - accuracy: 0.9136 - val_loss: 0.0927 - val_accuracy: 0.9670
+Epoch 7
+loss: 0.2115 - accuracy: 0.9194 - val_loss: 0.3647 - val_accuracy: 0.8583
+Epoch 8
+loss: 0.2066 - accuracy: 0.9192 - val_loss: 0.0526 - val_accuracy: 0.9837
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Epoch 1
+loss: 0.6054 - accuracy: 0.6933 - val_loss: 0.6281 - val_accuracy: 0.5742
+Epoch 2
+loss: 0.4351 - accuracy: 0.8042 - val_loss: 0.2083 - val_accuracy: 0.9230
+Epoch 3
+loss: 0.3115 - accuracy: 0.8729 - val_loss: 0.2532 - val_accuracy: 0.9185
+Epoch 4
+loss: 0.2579 - accuracy: 0.8956 - val_loss: 0.0950 - val_accuracy: 0.9722
+Epoch 5
+loss: 0.2287 - accuracy: 0.9113 - val_loss: 0.1070 - val_accuracy: 0.9650
+Epoch 6
+loss: 0.2335 - accuracy: 0.9151 - val_loss: 0.1004 - val_accuracy: 0.9653
+Epoch 7
+loss: 0.2111 - accuracy: 0.9216 - val_loss: 0.0925 - val_accuracy: 0.9680
+Epoch 8
+loss: 0.1954 - accuracy: 0.9268 - val_loss: 0.0903 - val_accuracy: 0.9703
+Epoch 9
+loss: 0.2452 - accuracy: 0.9155 - val_loss: 0.3341 - val_accuracy: 0.8640
+Epoch 10
+loss: 0.2243 - accuracy: 0.9129 - val_loss: 0.1097 - val_accuracy: 0.9670
+Epoch 11
+loss: 0.1643 - accuracy: 0.9393 - val_loss: 0.0490 - val_accuracy: 0.9840
+Epoch 12
+loss: 0.1729 - accuracy: 0.9336 - val_loss: 0.1626 - val_accuracy: 0.9575
+Epoch 13
+loss: 0.1632 - accuracy: 0.9411 - val_loss: 0.0595 - val_accuracy: 0.9803
+Epoch 14
+loss: 0.1627 - accuracy: 0.9423 - val_loss: 0.1295 - val_accuracy: 0.9528
+Epoch 15
+loss: 0.1439 - accuracy: 0.9474 - val_loss: 0.0786 - val_accuracy: 0.9745
+Epoch 16
+loss: 0.1373 - accuracy: 0.9522 - val_loss: 0.1139 - val_accuracy: 0.9655
+Epoch 17
+loss: 0.1374 - accuracy: 0.9514 - val_loss: 0.0308 - val_accuracy: 0.9910
+Epoch 18
+loss: 0.1329 - accuracy: 0.9543 - val_loss: 0.0498 - val_accuracy: 0.9815
+Epoch 19
+loss: 0.1299 - accuracy: 0.9533 - val_loss: 0.0218 - val_accuracy: 0.9935
+Epoch 20
+loss: 0.1283 - accuracy: 0.9551 - val_loss: 0.0554 - val_accuracy: 0.9837
+Epoch 21
+loss: 0.1360 - accuracy: 0.9529 - val_loss: 0.0317 - val_accuracy: 0.9887
+Epoch 22
+loss: 0.1162 - accuracy: 0.9599 - val_loss: 0.1264 - val_accuracy: 0.9588
+Epoch 23
+loss: 0.1312 - accuracy: 0.9548 - val_loss: 0.0304 - val_accuracy: 0.9895
+Epoch 24
+loss: 0.1108 - accuracy: 0.9617 - val_loss: 0.0377 - val_accuracy: 0.9865
+Epoch 25
+loss: 0.1144 - accuracy: 0.9598 - val_loss: 0.0379 - val_accuracy: 0.9868
+Epoch 26
+loss: 0.1154 - accuracy: 0.9602 - val_loss: 0.0551 - val_accuracy: 0.9847
+Epoch 27
+loss: 0.1023 - accuracy: 0.9628 - val_loss: 0.0516 - val_accuracy: 0.9818
+Epoch 28
+loss: 0.1061 - accuracy: 0.9622 - val_loss: 0.0430 - val_accuracy: 0.9837
+Epoch 29
+loss: 0.0994 - accuracy: 0.9653 - val_loss: 0.0514 - val_accuracy: 0.9812
+Epoch 30
+loss: 0.1283 - accuracy: 0.9578 - val_loss: 0.0169 - val_accuracy: 0.9955
+Epoch 31
+loss: 0.0940 - accuracy: 0.9666 - val_loss: 0.0273 - val_accuracy: 0.9900
+Epoch 32
+loss: 0.1000 - accuracy: 0.9636 - val_loss: 0.0227 - val_accuracy: 0.9927
+Epoch 33
+loss: 0.0957 - accuracy: 0.9672 - val_loss: 0.0154 - val_accuracy: 0.9950
+Epoch 34
+loss: 0.1004 - accuracy: 0.9652 - val_loss: 0.0172 - val_accuracy: 0.9940
+Epoch 35
+loss: 0.0972 - accuracy: 0.9653 - val_loss: 0.0677 - val_accuracy: 0.9770
+Epoch 36
+loss: 0.0940 - accuracy: 0.9667 - val_loss: 0.0200 - val_accuracy: 0.9937
+Epoch 37
+loss: 0.1039 - accuracy: 0.9640 - val_loss: 0.0325 - val_accuracy: 0.9898
+Epoch 38
+loss: 0.0996 - accuracy: 0.9641 - val_loss: 0.0474 - val_accuracy: 0.9840
+Epoch 39
+loss: 0.0892 - accuracy: 0.9687 - val_loss: 0.1189 - val_accuracy: 0.9655
+Epoch 40
+loss: 0.0890 - accuracy: 0.9696 - val_loss: 0.0400 - val_accuracy: 0.9833
+Epoch 41
+loss: 0.0852 - accuracy: 0.9709 - val_loss: 0.0458 - val_accuracy: 0.9847
+Epoch 42
+loss: 0.0825 - accuracy: 0.9707 - val_loss: 0.0293 - val_accuracy: 0.9935
+Epoch 43
+loss: 0.0848 - accuracy: 0.9699 - val_loss: 0.0295 - val_accuracy: 0.9927
+Epoch 44
+loss: 0.0911 - accuracy: 0.9666 - val_loss: 0.0228 - val_accuracy: 0.9930
+Epoch 45
+loss: 0.0882 - accuracy: 0.9669 - val_loss: 0.0322 - val_accuracy: 0.9898
+Epoch 46
+loss: 0.0750 - accuracy: 0.9732 - val_loss: 0.0203 - val_accuracy: 0.9933
+Epoch 47
+loss: 0.0870 - accuracy: 0.9682 - val_loss: 0.0360 - val_accuracy: 0.9868
+Epoch 48
+loss: 0.0843 - accuracy: 0.9717 - val_loss: 0.0330 - val_accuracy: 0.9893
+Epoch 49
+loss: 0.0828 - accuracy: 0.9702 - val_loss: 0.0204 - val_accuracy: 0.9940
+Epoch 50
+loss: 0.0772 - accuracy: 0.9736 - val_loss: 0.0912 - val_accuracy: 0.9753
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Epoch 1
+loss: 0.6074 - accuracy: 0.6913 - val_loss: 0.7482 - val_accuracy: 0.5860
+Epoch 2
+loss: 0.5089 - accuracy: 0.7548 - val_loss: 0.4440 - val_accuracy: 0.7925
+Epoch 3
+loss: 0.4104 - accuracy: 0.8189 - val_loss: 0.6732 - val_accuracy: 0.7035
+Epoch 4
+loss: 0.2841 - accuracy: 0.8845 - val_loss: 0.9672 - val_accuracy: 0.7030
+Epoch 5
+loss: 0.2336 - accuracy: 0.9087 - val_loss: 0.1151 - val_accuracy: 0.9540
+Epoch 6
+loss: 0.2418 - accuracy: 0.9096 - val_loss: 0.3184 - val_accuracy: 0.8650
+Epoch 7
+loss: 0.2091 - accuracy: 0.9217 - val_loss: 0.0394 - val_accuracy: 0.9930
+Epoch 8
+loss: 0.1980 - accuracy: 0.9257 - val_loss: 0.0952 - val_accuracy: 0.9625
+Epoch 9
+loss: 0.1946 - accuracy: 0.9309 - val_loss: 0.0600 - val_accuracy: 0.9800
+Epoch 10
+loss: 0.1729 - accuracy: 0.9344 - val_loss: 0.0816 - val_accuracy: 0.9745
+Epoch 11
+loss: 0.1670 - accuracy: 0.9389 - val_loss: 0.0446 - val_accuracy: 0.9860
+Epoch 12
+loss: 0.1689 - accuracy: 0.9390 - val_loss: 0.1471 - val_accuracy: 0.9460
+Epoch 13
+loss: 0.1638 - accuracy: 0.9391 - val_loss: 0.0409 - val_accuracy: 0.9880
+Epoch 14
+loss: 0.1530 - accuracy: 0.9458 - val_loss: 0.0605 - val_accuracy: 0.9745
+Epoch 15
+loss: 0.1483 - accuracy: 0.9438 - val_loss: 0.1073 - val_accuracy: 0.9730
+Epoch 16
+loss: 0.1698 - accuracy: 0.9408 - val_loss: 0.0661 - val_accuracy: 0.9795
+Epoch 17
+loss: 0.1355 - accuracy: 0.9506 - val_loss: 0.0569 - val_accuracy: 0.9810
+Epoch 18
+loss: 0.1464 - accuracy: 0.9481 - val_loss: 0.0308 - val_accuracy: 0.9900
+Epoch 19
+loss: 0.1341 - accuracy: 0.9507 - val_loss: 0.0647 - val_accuracy: 0.9825
+Epoch 20
+loss: 0.1345 - accuracy: 0.9521 - val_loss: 0.0562 - val_accuracy: 0.9845
+Epoch 21
+loss: 0.1230 - accuracy: 0.9578 - val_loss: 0.0272 - val_accuracy: 0.9950
+Epoch 22
+loss: 0.1189 - accuracy: 0.9575 - val_loss: 0.0269 - val_accuracy: 0.9885
+Epoch 23
+loss: 0.1123 - accuracy: 0.9601 - val_loss: 0.0238 - val_accuracy: 0.9910
+Epoch 24
+loss: 0.1265 - accuracy: 0.9555 - val_loss: 0.0294 - val_accuracy: 0.9930
+Epoch 25
+loss: 0.1157 - accuracy: 0.9589 - val_loss: 0.0256 - val_accuracy: 0.9915
+Epoch 26
+loss: 0.1382 - accuracy: 0.9525 - val_loss: 0.0458 - val_accuracy: 0.9855
+Epoch 27
+loss: 0.1103 - accuracy: 0.9622 - val_loss: 0.0479 - val_accuracy: 0.9835
+Epoch 28
+loss: 0.1126 - accuracy: 0.9617 - val_loss: 0.0527 - val_accuracy: 0.9820
+Epoch 29
+loss: 0.1175 - accuracy: 0.9600 - val_loss: 0.0178 - val_accuracy: 0.9940
+Epoch 30
+loss: 0.1072 - accuracy: 0.9616 - val_loss: 0.0386 - val_accuracy: 0.9870
+Epoch 31
+loss: 0.1007 - accuracy: 0.9651 - val_loss: 0.0232 - val_accuracy: 0.9940
+Epoch 32
+loss: 0.1279 - accuracy: 0.9560 - val_loss: 0.0336 - val_accuracy: 0.9905
+Epoch 33
+loss: 0.1049 - accuracy: 0.9639 - val_loss: 0.0196 - val_accuracy: 0.9940
+Epoch 34
+loss: 0.0982 - accuracy: 0.9649 - val_loss: 0.0282 - val_accuracy: 0.9910
+Epoch 35
+loss: 0.0982 - accuracy: 0.9650 - val_loss: 0.0148 - val_accuracy: 0.9950
+Epoch 36
+loss: 0.0921 - accuracy: 0.9677 - val_loss: 0.0185 - val_accuracy: 0.9920
+Epoch 37
+loss: 0.1244 - accuracy: 0.9538 - val_loss: 0.0421 - val_accuracy: 0.9875
+Epoch 38
+loss: 0.0924 - accuracy: 0.9690 - val_loss: 0.0237 - val_accuracy: 0.9940
+Epoch 39
+loss: 0.1060 - accuracy: 0.9639 - val_loss: 0.0575 - val_accuracy: 0.9825
+Epoch 40
+loss: 0.1040 - accuracy: 0.9662 - val_loss: 0.0262 - val_accuracy: 0.9925
+Epoch 41
+loss: 0.0936 - accuracy: 0.9679 - val_loss: 0.0236 - val_accuracy: 0.9915
+Epoch 42
+loss: 0.0858 - accuracy: 0.9701 - val_loss: 0.0195 - val_accuracy: 0.9950
+Epoch 43
+loss: 0.0878 - accuracy: 0.9699 - val_loss: 0.0306 - val_accuracy: 0.9860
+Epoch 44
+loss: 0.0980 - accuracy: 0.9663 - val_loss: 0.0146 - val_accuracy: 0.9955
+Epoch 45
+loss: 0.0904 - accuracy: 0.9689 - val_loss: 0.0183 - val_accuracy: 0.9955
+Epoch 46
+loss: 0.0902 - accuracy: 0.9679 - val_loss: 0.0348 - val_accuracy: 0.9900
+Epoch 47
+loss: 0.0839 - accuracy: 0.9699 - val_loss: 0.0619 - val_accuracy: 0.9865
+Epoch 48
+loss: 0.0800 - accuracy: 0.9716 - val_loss: 0.0294 - val_accuracy: 0.9910
+Epoch 49
+loss: 0.0853 - accuracy: 0.9707 - val_loss: 0.0272 - val_accuracy: 0.9950
+Epoch 50
+loss: 0.0868 - accuracy: 0.9709 - val_loss: 0.0236 - val_accuracy: 0.9925
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 1)                 129
+=================================================================
+Total params: 1,199,505
+Trainable params: 1,199,489
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Epoch 1
+loss: 0.0005 - accuracy: 0.9997 - val_loss: 391.5450 - val_accuracy: 0.0000
+Epoch 2
+loss: 0.0000 - accuracy: 1.0000 - val_loss: 405.8045 - val_accuracy: 0.0000
+Epoch 3
+loss: 0.0000 - accuracy: 1.0000 - val_loss: 408.5115 - val_accuracy: 0.0000
+Epoch 4
+loss: 0.0000 - accuracy: 1.0000 - val_loss: 414.7581 - val_accuracy: 0.0000
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Epoch 1
+loss: 0.0008 - accuracy: 0.9994 - val_loss: 163.8231 - val_accuracy: 0.0000
+Epoch 2
+loss: 0.0000 - accuracy: 1.0000 - val_loss: 166.0246 - val_accuracy: 0.0000
+Epoch 3
+loss: 0.0000 - accuracy: 1.0000 - val_loss: 164.8604 - val_accuracy: 0.0000
+Epoch 4
+loss: 0.0000 - accuracy: 1.0000 - val_loss: 165.8021 - val_accuracy: 0.0000
+Epoch 5
+loss: 0.0000 - accuracy: 1.0000 - val_loss: 164.8049 - val_accuracy: 0.0000
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Epoch 1
+loss: 0.0005 - accuracy: 0.9999 - val_loss: 286.0339 - val_accuracy: 0.0000
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+random_flip (RandomFlip)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_rotation (RandomRotat (None, 128, 128, 3)       0
+_________________________________________________________________
+random_contrast (RandomContr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_translation (RandomTr (None, 128, 128, 3)       0
+_________________________________________________________________
+random_zoom (RandomZoom)     (None, 128, 128, 3)       0
+_________________________________________________________________
+random_crop (RandomCrop)     (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Epoch 1
+loss: 0.5927 - accuracy: 0.6950 - val_loss: 0.4524 - val_accuracy: 0.7650
+Epoch 2
+loss: 0.4639 - accuracy: 0.7876 - val_loss: 0.5458 - val_accuracy: 0.7635
+Epoch 3
+loss: 0.3381 - accuracy: 0.8576 - val_loss: 0.4447 - val_accuracy: 0.8045
+Epoch 4
+loss: 0.2559 - accuracy: 0.8964 - val_loss: 0.4109 - val_accuracy: 0.8415
+Epoch 5
+loss: 0.2469 - accuracy: 0.9032 - val_loss: 0.0967 - val_accuracy: 0.9585
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+rescaling (Rescaling)        (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Epoch 1
+loss: 0.0654 - accuracy: 0.9771 - val_loss: 12.1983 - val_accuracy: 0.5191
+Epoch 2
+loss: 0.0338 - accuracy: 0.9894 - val_loss: 0.4006 - val_accuracy: 0.9328
+Epoch 3
+loss: 0.0238 - accuracy: 0.9932 - val_loss: 0.1925 - val_accuracy: 0.9514
+Epoch 4
+loss: 0.0202 - accuracy: 0.9947 - val_loss: 0.2973 - val_accuracy: 0.9390
+Epoch 1
+loss: 0.0253 - accuracy: 0.9936 - val_loss: 0.1686 - val_accuracy: 0.9629
+Epoch 2
+loss: 0.0182 - accuracy: 0.9950 - val_loss: 0.1027 - val_accuracy: 0.9751
+Epoch 3
+loss: 0.0175 - accuracy: 0.9954 - val_loss: 0.1608 - val_accuracy: 0.9671
+Epoch 4
+loss: 0.0153 - accuracy: 0.9958 - val_loss: 0.2722 - val_accuracy: 0.9643
+Epoch 5
+loss: 0.0132 - accuracy: 0.9965 - val_loss: 0.6813 - val_accuracy: 0.9662
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+rescaling (Rescaling)        (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Epoch 1
+loss: 0.0206 - accuracy: 0.9948 - val_loss: 0.1435 - val_accuracy: 0.9748
+Epoch 2
+loss: 0.0173 - accuracy: 0.9955 - val_loss: 0.2104 - val_accuracy: 0.9616
+Epoch 3
+loss: 0.0146 - accuracy: 0.9963 - val_loss: 0.1931 - val_accuracy: 0.9779
+Epoch 4
+loss: 0.0151 - accuracy: 0.9959 - val_loss: 0.0921 - val_accuracy: 0.9811
+Epoch 5
+loss: 0.0114 - accuracy: 0.9968 - val_loss: 0.1440 - val_accuracy: 0.9781
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+rescaling (Rescaling)        (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Model: "sequential"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #
+=================================================================
+rescaling (Rescaling)        (None, 128, 128, 3)       0
+_________________________________________________________________
+conv2d (Conv2D)              (None, 116, 116, 8)       4064
+_________________________________________________________________
+batch_normalization (BatchNo (None, 116, 116, 8)       32
+_________________________________________________________________
+dropout (Dropout)            (None, 116, 116, 8)       0
+_________________________________________________________________
+average_pooling2d (AveragePo (None, 58, 58, 8)         0
+_________________________________________________________________
+conv2d_1 (Conv2D)            (None, 48, 48, 16)        15504
+_________________________________________________________________
+average_pooling2d_1 (Average (None, 24, 24, 16)        0
+_________________________________________________________________
+flatten (Flatten)            (None, 9216)              0
+_________________________________________________________________
+dense (Dense)                (None, 128)               1179776
+_________________________________________________________________
+dense_1 (Dense)              (None, 2)                 258
+=================================================================
+Total params: 1,199,634
+Trainable params: 1,199,618
+Non-trainable params: 16
+_________________________________________________________________
+Epoch 1
+loss: 0.0721 - accuracy: 0.9753 - val_loss: 0.2416 - val_accuracy: 0.9176
+Epoch 2
+loss: 0.0363 - accuracy: 0.9879 - val_loss: 0.0334 - val_accuracy: 0.9902
